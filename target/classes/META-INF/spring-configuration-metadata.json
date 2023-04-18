@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "aptiv.smb",
+      "type": "com.aptiv.smb.config.SmbAutoProperties",
+      "sourceType": "com.aptiv.smb.config.SmbAutoProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "aptiv.smb.hostname",
+      "type": "java.lang.String",
+      "sourceType": "com.aptiv.smb.config.SmbAutoProperties"
+    },
+    {
+      "name": "aptiv.smb.password",
+      "type": "java.lang.String",
+      "sourceType": "com.aptiv.smb.config.SmbAutoProperties"
+    },
+    {
+      "name": "aptiv.smb.root-folder",
+      "type": "java.lang.String",
+      "sourceType": "com.aptiv.smb.config.SmbAutoProperties"
+    },
+    {
+      "name": "aptiv.smb.username",
+      "type": "java.lang.String",
+      "sourceType": "com.aptiv.smb.config.SmbAutoProperties"
+    }
+  ],
+  "hints": []
+}

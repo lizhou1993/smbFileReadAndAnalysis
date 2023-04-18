@@ -1,0 +1,6 @@
+aptiv:
+  smb:
+    hostname: localhost
+    username: zhou.li@aptiv.com
+    password: liudalin19950104!
+    root-folder: 新建文件夹
