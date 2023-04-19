@@ -4,6 +4,9 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.BaseRowModel;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.aptiv.smb.vo.BomAndBillExportVO;
+import com.aptiv.smb.vo.BomModuleExportVO;
+import com.aptiv.smb.vo.BomUsedTimesExportVO;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -16,19 +19,24 @@ public class ExportExcelUtil {
     /**
      * 导出为Excel
      * 详细文档https://github.com/alibaba/easyexcel
-     *
-     * @param fileName 文件名称，不包含扩展名
-     * @param data     表数据行
-     * @param clazz    数据对应的model class
-     * @param <T>      数据对应的model
      */
-    public static <T extends BaseRowModel> void exportExcel(HttpServletResponse response, String fileName, List<T> data, Class<T> clazz) throws IOException {
+    public static <T extends BaseRowModel> void exportExcel(HttpServletResponse response, String fileName, List<BomUsedTimesExportVO> data1, Class<BomUsedTimesExportVO> clazz1, List<BomModuleExportVO> data2, Class<BomModuleExportVO> clazz2, List<BomAndBillExportVO> data3, Class<BomAndBillExportVO> clazz3) throws IOException {
         try (ServletOutputStream out = response.getOutputStream()) {
             ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX, true);
             String fileNameEncode = new String((fileName + ".xlsx").getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
-            Sheet sheet = new Sheet(1, 0, clazz);
-            sheet.setSheetName(fileName);
-            writer.write(data, sheet);
+
+            Sheet sheet1 = new Sheet(1, 0, clazz1);
+            sheet1.setSheetName("BOM记录汇总");
+            writer.write(data1, sheet1);
+
+            Sheet sheet2 = new Sheet(2, 0, clazz2);
+            sheet2.setSheetName("BOM模块号配置");
+            writer.write(data2, sheet2);
+
+            Sheet sheet3 = new Sheet(3, 0, clazz3);
+            sheet3.setSheetName("BOM对应订单信息");
+            writer.write(data3, sheet3);
+
             response.setContentType("multipart/form-data");
             response.setCharacterEncoding("utf-8");
             response.setHeader("Content-disposition", "attachment;filename=" + fileNameEncode);

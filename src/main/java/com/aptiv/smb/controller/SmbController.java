@@ -2,7 +2,10 @@ package com.aptiv.smb.controller;
 
 import com.aptiv.smb.service.SmbService;
 import com.aptiv.smb.util.ExportExcelUtil;
-import com.aptiv.smb.vo.ExportVO;
+import com.aptiv.smb.vo.BomAndBillExportVO;
+import com.aptiv.smb.vo.BomModuleExportVO;
+import com.aptiv.smb.vo.BomUsedTimesExportVO;
+import com.aptiv.smb.vo.DataVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 
 @Api(tags = "BTO归档文件。\n" +
         "实现思路：\n" +
@@ -30,7 +32,7 @@ class SmbController {
     @ApiOperation("执行解析并导出结果")
     @GetMapping("do")
     public void doIt(HttpServletResponse response) throws IOException {
-        List<ExportVO> data = smbService.doIt();
-        ExportExcelUtil.exportExcel(response, "BTO归档文件导出 " + LocalDate.now(), data, ExportVO.class);
+        DataVO data = smbService.doIt();
+        ExportExcelUtil.exportExcel(response, "K426 BOM记录报表" + LocalDate.now(), data.getBomUsedTimesExportVOS(), BomUsedTimesExportVO.class, data.getBomModuleExportVOS(), BomModuleExportVO.class, data.getBomAndBillExportVOS(), BomAndBillExportVO.class);
     }
 }
