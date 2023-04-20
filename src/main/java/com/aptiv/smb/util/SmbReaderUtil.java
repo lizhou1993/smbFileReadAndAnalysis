@@ -59,7 +59,7 @@ public class SmbReaderUtil {
                     filePaths.add(file.getAbsolutePath());
                 }
                 // 测试使用，只读取几个文件
-//                if (filePaths.size() == 200) {
+//                if (filePaths.size() == 150) {
 //                    break;
 //                }
             }

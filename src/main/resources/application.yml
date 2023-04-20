@@ -7,12 +7,12 @@ server:
       force: true
 aptiv:
   smb:
-#    hostname: localhost
-#    username: zhou.li@aptiv.com
-#    password: liudalin19950104!
-#    root-folder: 新建文件夹
-    hostname: 10.132.15.18
+    hostname: localhost
     username: zhou.li@aptiv.com
     password: liudalin19950104!
-    root-folder: K426 ArchivingFiles
+    root-folder: 新建文件夹
+#    hostname: 10.132.15.18
+#    username: zhou.li@aptiv.com
+#    password: liudalin19950104!
+#    root-folder: K426 ArchivingFiles
 
