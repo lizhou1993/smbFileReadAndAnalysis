@@ -29,10 +29,18 @@ import java.time.LocalDate;
 class SmbController {
     private final SmbService smbService;
 
-    @ApiOperation("执行解析并导出结果")
+    @ApiOperation("执行解析并导出excel")
     @GetMapping("do")
     public void doIt(HttpServletResponse response) throws IOException {
         DataVO data = smbService.doIt();
         ExportExcelUtil.exportExcel(response, "K426 BOM记录报表" + LocalDate.now(), data.getBomUsedTimesExportVOS(), BomUsedTimesExportVO.class, data.getBomModuleExportVOS(), BomModuleExportVO.class, data.getBomAndBillExportVOS(), BomAndBillExportVO.class);
     }
+
+    @ApiOperation("执行解析将excel保存到C盘下")
+    @GetMapping("do1")
+    public void doIt1() throws Exception {
+        DataVO data = smbService.doIt1();
+        ExportExcelUtil.saveExcel("K426 BOM记录报表" + LocalDate.now(), data.getBomUsedTimesExportVOS(), BomUsedTimesExportVO.class, data.getBomModuleExportVOS(), BomModuleExportVO.class, data.getBomAndBillExportVOS(), BomAndBillExportVO.class);
+    }
+
 }

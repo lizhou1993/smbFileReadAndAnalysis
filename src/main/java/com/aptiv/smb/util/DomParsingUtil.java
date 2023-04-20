@@ -44,7 +44,11 @@ public class DomParsingUtil {
                 return bomAndBillDetailVOS;
             }
             Element firstEvent = (Element)events.content().get(0);
-            createTime = firstEvent.attributeValue("ORDEVTTI");
+            createTime = firstEvent.attributeValue("ORDEVTTI"); // 格式2017-08-11:00:50:44.768807
+            if (StringUtils.isNotBlank(createTime) && createTime.length() > 20) { // 转换时间字符串格式
+                createTime = createTime.substring(0, 19);
+                createTime = createTime.replaceFirst(":", " ");
+            }
             // bom
             Element subProds = root.element("SubProds");
             if (subProds == null || subProds.content().size() == 0) {
